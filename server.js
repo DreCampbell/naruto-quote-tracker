@@ -1,10 +1,9 @@
-console.log('Naruto Quotes')
-
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const MongoClient = require('mongodb').MongoClient
 const connectionString = 'mongodb+srv://DreCampbell34:TheSixthHokage@cluster0.vaka5ir.mongodb.net/?retryWrites=true&w=majority'
+const PORT = 3000
 
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
@@ -78,8 +77,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       .catch(err => console.log(err))
     })
 
-    app.listen(3000, function(){
-        console.log(`The server is running on PORT 3000! Believe it!`)
+    app.listen(process.env.PORT || PORT, () => {
+        console.log(`The server is running on PORT ${PORT}! Believe it!`)
     })
   })
   .catch(error => console.error(error))
